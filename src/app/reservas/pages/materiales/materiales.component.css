@@ -1,0 +1,17 @@
+.box{
+  margin: auto;
+  padding-top: 5rem;
+}
+
+.card{
+  margin: 1rem;
+  width: 18rem;
+}
+
+@media screen and (max-width: 700px) {
+  .card{
+    margin: 0;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="box row">
+    <div *ngFor="let material of materiales" class="col-3 card">
+      <img [src]="material.imagen" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{ material.nombre }}</h5>
+        <p class="card-text">{{ material.descripcion }}</p>
+        <a href="#" class="btn btn-primary" style="background: #002F7B;border: none">AÑADIR A RESERVA</a>
+      </div>
+    </div>
+  </div>
+</div>
