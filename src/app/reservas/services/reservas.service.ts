@@ -14,7 +14,7 @@ export class ReservasService{
   ){}
 
 
-    token : string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcxNjE0ODkzLCJpYXQiOjE2NzE2MTEyOTMsImp0aSI6ImJlYzgxYjY1MmE3ZTQzYTE4NzkyN2E0NGZiMDEyYmJjIiwidXNlcl9pZCI6M30.ZIKtFmtoJsi78YP2LlPVLiYkEtVxyfdOy4PlrIpuWeg'
+    token : string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcxNjE5Mjg0LCJpYXQiOjE2NzE2MTEyOTMsImp0aSI6IjhlODk4NmZkZDVkMjQxOTJhNzdlNDFhNGQ1MjFjZDJlIiwidXNlcl9pZCI6M30.QmhZSUsYmwzscDkP8rwvfjNlL7_zH3IjzlSACJxoCV4'
 
 
 

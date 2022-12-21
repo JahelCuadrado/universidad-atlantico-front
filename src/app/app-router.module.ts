@@ -4,6 +4,8 @@ import { MaterialesComponent } from './reservas/pages/materiales/materiales.comp
 import { EquiposComponent } from './reservas/pages/equipos/equipos.component';
 import { ClasesComponent } from './reservas/pages/clases/clases.component';
 import { RouterModule, Routes } from "@angular/router";
+import { LoginComponent } from './login/pages/login/login.component';
+import { RegisterComponent } from './login/pages/register/register.component';
 
 const routes : Routes = [
   {
@@ -19,8 +21,16 @@ const routes : Routes = [
     component: ClasesComponent
   },
   {
+    path:'login',
+    component: LoginComponent
+  },
+  {
+    path:'register',
+    component: RegisterComponent
+  },
+  {
     path:'**',
-    redirectTo:'materiales'
+    redirectTo:'login'
   }
 ];
 
