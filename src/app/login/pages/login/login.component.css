@@ -21,6 +21,12 @@ p{
 .btn{
   width: 100%;
   padding: 15px;
+  background: #002F7B;
+  border: none;
+}
+
+.invalid-feedback{
+  text-align: start;
 }
 
 @media screen and (max-width: 700px) {

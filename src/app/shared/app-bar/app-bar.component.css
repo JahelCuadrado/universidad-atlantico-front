@@ -26,6 +26,15 @@ a:hover{
   color: #00AFBD;
 }
 
+.register{
+  margin-right: 0.3rem;
+}
+
+.register button{
+  border: none;
+  background: #002F7B;
+}
+
 @media screen and (max-width: 1000px) {
   .navbar-nav{
     margin-top: 30px;

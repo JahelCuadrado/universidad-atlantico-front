@@ -16,6 +16,7 @@ export class MaterialesComponent {
   }
 
   ngOnInit(): void {
+
       this.reservasService.obtenerMateriales().subscribe({
 
       next: (resp) => {

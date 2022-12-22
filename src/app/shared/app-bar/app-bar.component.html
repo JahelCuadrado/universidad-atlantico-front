@@ -3,7 +3,10 @@
     <a class="navbar-brand" href="#">
       <img src=".\\src\assets\image\logo-atlantico-medio.png" style="max-width: 220px;">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <div *ngIf="!usuarioLogueado" class="register">
+      <button routerLink="register" type="button" class="btn btn-primary">Registrarse</button>
+    </div>
+    <button *ngIf="usuarioLogueado" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div *ngIf="usuarioLogueado" class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -24,9 +27,6 @@
         <a
         class="nav-link disabled">RESERVA</a>
       </div>
-    </div>
-    <div class="register">
-      <button routerLink="register" type="button" class="btn btn-primary">Registrarse</button>
     </div>
   </div>
 </nav>

@@ -1,18 +1,42 @@
 <div class="login">
   <img src="./assets/image/logo-uni.jpg" style="width: 10rem;">
 
-  <div class="form-floating mb-3">
-    <input type="email" class="form-control"placeholder="nombre@email.com">
-    <label>Email institucional</label>
-  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-floating mb-3">
+      <input
+      formControlName="email_institucional"
+      type="email"
+      class="form-control"
+      placeholder="nombre@email.com"
+      [ngClass]="{'is-invalid': submitted && f['email_institucional'].errors}">
+      <label>Email institucional</label>
+      <div class="invalid-feedback">
+        El email institucional es obligatorio
+      </div>
+    </div>
 
 
-  <div class="form-floating mb-3">
-    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-    <label for="floatingPassword">Contraseña</label>
-  </div>
+    <div class="form-floating mb-3">
+      <input
+      formControlName="password"
+      type="password"
+      class="form-control"
+      id="floatingPassword"
+      placeholder="Password"
+      [ngClass]="{'is-invalid': submitted && f['password'].errors}">
+      <label for="floatingPassword">Contraseña</label>
+      <div class="invalid-feedback">
+        La contraseña es obligatoria
+      </div>
+    </div>
 
 
-  <button type="button" class="btn btn-primary">Iniciar Sesión</button>
+    <button type="submit" class="btn btn-primary mb-3">Iniciar Sesión</button>
 
+    <div *ngIf="!credencialesSonIncorrectas" class="alert alert-danger" role="alert">
+      Las credenciales son incorrectas
+    </div>
+
+  </form>
 </div>
