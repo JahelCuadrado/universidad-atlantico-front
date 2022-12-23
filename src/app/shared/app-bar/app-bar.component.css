@@ -30,6 +30,11 @@ a:hover{
   margin-right: 0.3rem;
 }
 
+.logout{
+  background: #002F7B;
+  color: white;
+}
+
 .register button{
   border: none;
   background: #002F7B;

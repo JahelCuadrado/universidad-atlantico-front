@@ -27,6 +27,7 @@ obtenerMateriales(): Observable<MaterialesResponse[]>{
   return this.http.get<MaterialesResponse[]>(urlMateriales, httpOptions);
 }
 
+
 obtenerToken() : TokenDjango{
   return JSON.parse(localStorage.getItem('tokenDjango')!) || "";
 }

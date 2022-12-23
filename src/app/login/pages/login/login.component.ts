@@ -27,6 +27,14 @@ export class LoginComponent {
       })
   }
 
+
+  ngOnInit(): void {
+    if(this.tokenService.comprobarToken()!=""){
+      this.router.navigate(['/materiales'])
+    }
+  }
+
+
   onSubmit(){
       this.submitted = true
 
@@ -37,7 +45,7 @@ export class LoginComponent {
               password: this.loginForm.value.password,
             }
 
-            this.tokenService.registroUsuario(usuario).subscribe({
+            this.tokenService.loginUsuario(usuario).subscribe({
 
               next: (res) => {
                 console.log(res);
