@@ -11,26 +11,72 @@
     </button>
     <div *ngIf="usuarioLogueado" class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
+
         <a
-        class="nav-link"
-        aria-current="page"
-        routerLink="materiales"
-        routerLinkActive="active">MATERIAL</a>
+            class="nav-link"
+            aria-current="page"
+            routerLink="materiales"
+            routerLinkActive="active">MATERIAL</a>
+
         <a
-        class="nav-link"
-        routerLink="equipos"
-        routerLinkActive="active">EQUIPOS</a>
+            class="nav-link"
+            routerLink="equipos"
+            routerLinkActive="active">EQUIPOS</a>
+
         <a
-        class="nav-link"
-        routerLink="clases"
-        routerLinkActive="active">CLASES</a>
+            class="nav-link"
+            routerLink="clases"
+            routerLinkActive="active">CLASES</a>
+
         <a
-        class="nav-link disabled">RESERVA</a>
-        <button (click)="cerrarSesion()" type="button" class="logout btn btn-default">
-          Cerrar sesión
+            class="nav-link disabled notification">
+            MIS RESERVAS
+
+        </a>
+
+        <button type="button" class="logout btn btn-default pantalla-pequena confirma" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            <span class="izquierda">
+              CONFIRMAR RESERVA
+            </span>
+
+            <span class="material-symbols-outlined derecha">
+              article
+            </span>
         </button>
+
+        <div class="notification pantalla-grande">
+              <span class="material-symbols-outlined reserva" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+              article
+              </span>
+              <span class="badge">3</span>
+        </div>
+
+
+
+
+        <button (click)="cerrarSesion()" type="button" class="logout btn btn-default">
+              <span class="cerrar-sesion izquierda">
+                CERRAR SESIÓN
+              </span>
+
+              <span class="material-symbols-rounded derecha">
+                logout
+              </span>
+        </button>
+
       </div>
 
     </div>
   </div>
 </nav>
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    ...
+  </div>
+</div>

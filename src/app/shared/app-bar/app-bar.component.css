@@ -31,8 +31,7 @@ a:hover{
 }
 
 .logout{
-  background: #002F7B;
-  color: white;
+  color: #002F7B;
 }
 
 .register button{
@@ -40,13 +39,101 @@ a:hover{
   background: #002F7B;
 }
 
+span{
+  padding: 0px;
+}
+
+.cerrar-sesion{
+  display: none;
+}
+
+.reserva{
+  margin-top: 7px;
+  margin-right: 50px;
+  color: #002F7B;
+  width: 1rem;
+  height: 1rem;
+}
+
+
+/* Icono de notificación */
+.notification {
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+
+.notification .badge {
+  position: absolute;
+  padding: 5px 8px;
+  left: 15px;
+  border-radius: 50%;
+  background: #002F7B;
+  color: white;
+}
+
+
+.pantalla-pequena{
+  display: none;
+}
+
+
+
 @media screen and (max-width: 1000px) {
+
+  .pantalla-pequena{
+    display: block;
+  }
+
+  .pantalla-grande{
+    display: none;
+  }
+
+
+
   .navbar-nav{
     margin-top: 30px;
     position: static;
     right: 100;
     margin-right: 50px;
   }
-}
 
+  .nav-link{
+    margin-left: 6px;
+  }
+
+  .logout{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    width: 15rem;
+    margin-top: 10px;
+    background: #002F7B;
+    color: white;
+  }
+
+  .cerrar-sesion{
+    padding-top: 3px;
+    display: block;
+  }
+
+  .izquierda, .derecha {
+    display: inline-block;
+  }
+
+  .izquierda {
+    float: left;
+  }
+
+  .derecha {
+    float: right;
+  }
+
+  .confirma{
+    margin-top: 45px;
+    width: 15rem;
+  }
+
+}
 
