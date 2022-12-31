@@ -9,7 +9,8 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class AppBarComponent {
 
-  usuarioLogueado : boolean = false
+  usuarioLogueado : boolean = false;
+  cantidadArticulos : number = 0;
 
   constructor(
     private tokenService: TokenService,
@@ -26,6 +27,12 @@ export class AppBarComponent {
         }else{
           this.usuarioLogueado = false
         }
+      }
+    });
+
+    window.addEventListener('storage', event => {
+      if (event.key === 'articulos') {
+        this.cantidadArticulos +=1
       }
     });
   }

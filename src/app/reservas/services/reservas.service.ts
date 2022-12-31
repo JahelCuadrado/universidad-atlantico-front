@@ -12,6 +12,8 @@ import { ClasesResponse } from '../interfaces/clases.interface';
 })
 export class ReservasService{
 
+  articulos : (ClasesResponse|EquiposResponse|MaterialesResponse)[] = [];
+
   constructor(
 		private http: HttpClient
   ){}
@@ -61,6 +63,22 @@ obtenerClases(): Observable<ClasesResponse[]>{
 
 obtenerToken() : TokenDjango{
   return JSON.parse(localStorage.getItem('tokenDjango')!) || "";
+}
+
+anadirArticuloReserva(articulo: MaterialesResponse| ClasesResponse| EquiposResponse){
+  this.articulos = JSON.parse(localStorage.getItem('articulos')!) || [];
+  this.articulos.push(articulo)
+  localStorage.setItem('articulos', JSON.stringify(this.articulos))
+}
+
+
+devolverCantidadArticulos(): number{
+  const articulos = JSON.parse(localStorage.getItem('articulos')!) || [];
+  return articulos.length()
+}
+
+devolverArticulos(): (ClasesResponse|EquiposResponse|MaterialesResponse)[]{
+  return JSON.parse(localStorage.getItem('articulos')!) || [];
 }
 
 

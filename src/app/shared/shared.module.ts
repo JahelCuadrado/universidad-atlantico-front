@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppBarComponent } from './app-bar/app-bar.component';
 import { RouterModule } from '@angular/router';
+import { ReservasModule } from '../reservas/reservas.module';
 
 
 
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReservasModule
   ],
   exports:[
     AppBarComponent
