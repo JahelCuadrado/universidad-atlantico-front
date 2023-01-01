@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TokenService } from '../../login/services/token.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { ReservasService } from '../../reservas/services/reservas.service';
 
 @Component({
   selector: 'app-app-bar',
@@ -14,12 +15,16 @@ export class AppBarComponent {
 
   constructor(
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private reservasService: ReservasService
   ){
 
   }
 
   ngOnInit(){
+
+    this.cantidadArticulos = this.reservasService.devolverCantidadArticulos();
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if(this.tokenService.comprobarToken()){
@@ -32,9 +37,11 @@ export class AppBarComponent {
 
     window.addEventListener('storage', event => {
       if (event.key === 'articulos') {
-        this.cantidadArticulos +=1
+
+          this.cantidadArticulos = this.reservasService.devolverCantidadArticulos();
       }
     });
+
   }
 
 

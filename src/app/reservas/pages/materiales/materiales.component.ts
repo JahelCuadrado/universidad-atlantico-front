@@ -20,6 +20,8 @@ export class MaterialesComponent {
 
   }
 
+
+
   ngOnInit(){
     if(this.tokenService.comprobarToken() != ""){
       this.refrescarToken()
@@ -28,9 +30,11 @@ export class MaterialesComponent {
   }
 
 
+
   refrescarToken(){
     this.tokenService.refrescarToken()
   }
+
 
 
   obtenerMateriales(){
@@ -46,10 +50,21 @@ export class MaterialesComponent {
           console.info(error)
           this.router.navigate(['/login'])
 
-      }})}
+      }})
+    }
 
 
 
-
-
+  anadirArticuloReserva(material: MaterialesResponse){
+    this.reservasService.anadirArticuloReserva(material)
   }
+
+
+
+  comprobarReserva(material: MaterialesResponse): boolean{
+    return this.reservasService.comprobarArticuloReservado(material)
+  }
+
+
+
+}
