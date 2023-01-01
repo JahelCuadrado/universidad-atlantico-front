@@ -65,6 +65,8 @@ obtenerToken() : TokenDjango{
   return JSON.parse(localStorage.getItem('tokenDjango')!) || "";
 }
 
+
+
 anadirArticuloReserva(articulo: MaterialesResponse| ClasesResponse| EquiposResponse){
   this.articulos = JSON.parse(localStorage.getItem('articulos')!) || [];
   this.articulos.push(articulo)
@@ -82,9 +84,11 @@ anadirArticuloReserva(articulo: MaterialesResponse| ClasesResponse| EquiposRespo
 }
 
 
+
 devolverCantidadArticulos(): number{
-    const articulos: (ClasesResponse|EquiposResponse|MaterialesResponse)[] = JSON.parse(localStorage.getItem('articulos')!) || [];
-    return articulos.length
+    this.articulos = JSON.parse(localStorage.getItem('articulos')!) || [];
+    console.log(this.articulos.length);
+    return this.articulos.length
 }
 
 
@@ -114,6 +118,38 @@ comprobarArticuloReservado(articulo: MaterialesResponse| ClasesResponse| Equipos
     return false;
   });
 }
+
+
+
+eliminarArticuloReserva(articulo: MaterialesResponse| ClasesResponse| EquiposResponse){
+  this.articulos = JSON.parse(localStorage.getItem('articulos')!) || [];
+
+  this.articulos = this.articulos.filter(elemento => {
+    if (elemento.hasOwnProperty('inventario')) {
+      return (elemento as MaterialesResponse).inventario != (articulo as MaterialesResponse).inventario;
+    }
+    if (elemento.hasOwnProperty('numero_clase')) {
+      return (elemento as ClasesResponse).numero_clase != (articulo as ClasesResponse).numero_clase;
+    }
+    if (elemento.hasOwnProperty('id')) {
+      return (elemento as EquiposResponse).id != (articulo as EquiposResponse).id;
+    }
+    return false
+  });
+
+  localStorage.setItem('articulos', JSON.stringify(this.articulos))
+
+  const oldValue = JSON.stringify(this.articulos.slice(0, -1));
+  const newValue = JSON.stringify(this.articulos);
+  const storageEvent = new StorageEvent('storage', {
+    key: 'articulos',
+    newValue,
+    oldValue,
+    url: window.location.href
+  });
+  window.dispatchEvent(storageEvent);
+}
+
 
 
 }

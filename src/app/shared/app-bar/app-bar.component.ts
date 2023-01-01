@@ -37,7 +37,6 @@ export class AppBarComponent {
 
     window.addEventListener('storage', event => {
       if (event.key === 'articulos') {
-
           this.cantidadArticulos = this.reservasService.devolverCantidadArticulos();
       }
     });
