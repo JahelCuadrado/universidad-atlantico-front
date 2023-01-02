@@ -43,4 +43,10 @@ export class ConfirmacionComponent {
   }
 
 
+
+  hacerReserva(){
+      
+  }
+
+
 }

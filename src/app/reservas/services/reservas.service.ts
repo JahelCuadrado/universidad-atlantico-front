@@ -152,4 +152,9 @@ eliminarArticuloReserva(articulo: MaterialesResponse| ClasesResponse| EquiposRes
 
 
 
+hacerReserva(){
+  this.articulos = JSON.parse(localStorage.getItem('articulos')!) || [];
+}
+
+
 }
