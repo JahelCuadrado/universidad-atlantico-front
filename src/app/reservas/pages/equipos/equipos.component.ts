@@ -46,6 +46,20 @@ export class EquiposComponent {
           console.info(error)
           this.router.navigate(['/login'])
 
-      }})}
+      }})
+
+    }
+
+
+    anadirArticuloReserva(equipo: EquiposResponse){
+      this.reservasService.anadirArticuloReserva(equipo)
+    }
+
+
+
+    comprobarReserva(equipo: EquiposResponse): boolean{
+      return this.reservasService.comprobarArticuloReservado(equipo);
+
+    }
 
 }

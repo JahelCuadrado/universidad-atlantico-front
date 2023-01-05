@@ -1,12 +1,13 @@
 <div class="container">
   <div class="box row">
-    <div *ngFor="let material of materiales" class="col-3 card disabled">
+    <div *ngFor="let material of materiales" [ngClass]="{'disabled': !material.disponible}" class="col-3 card disabled">
       <img [src]="material.imagen" class="card-img-top">
       <div class="card-body">
         <h5 class="card-title">{{ material.nombre }}</h5>
         <p class="card-text">{{ material.descripcion }}</p>
-        <a *ngIf="!comprobarReserva(material)" (click)="anadirArticuloReserva(material)" class="btn btn-primary" style="background: #002F7B;border: none">AÑADIR A RESERVA</a>
+        <a *ngIf="!comprobarReserva(material) && material.disponible" (click)="anadirArticuloReserva(material)" class="btn btn-primary" style="background: #002F7B;border: none">AÑADIR A RESERVA</a>
         <a *ngIf="comprobarReserva(material)" class="btn btn-primary">RESERVADO</a>
+        <a *ngIf="!material.disponible" class="btn btn-primary">NO DISPONIBLE</a>
       </div>
     </div>
   </div>

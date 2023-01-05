@@ -8,6 +8,22 @@
   width: 18rem;
 }
 
+.disabled{
+  filter: grayscale(100%);
+}
+
+.disabled .btn{
+  pointer-events: none;
+}
+
+.card.disabled {
+  order: 2;
+}
+
+.card:not(.disabled) {
+  order: 1;
+}
+
 @media screen and (max-width: 700px) {
   .card{
     margin: 0;
@@ -15,3 +31,4 @@
     margin-bottom: 1rem;
   }
 }
+

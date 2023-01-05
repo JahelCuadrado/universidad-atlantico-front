@@ -2,4 +2,19 @@
 {
   position:absolute;
   bottom: 1rem;
+  height: 60px;
+  width: 100%;
+  background: white;
 }
+
+.boton-reserva{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.cuerpo{
+  overflow: auto;
+  height: 800px;
+  margin-bottom: 60px;
+}
+

@@ -3,29 +3,28 @@
   <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 </div>
 <div class="offcanvas-body">
-
-  <div *ngFor="let articulo of articulos" >
-      <div *ngIf="comprobarArticuloReservado(articulo)" class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img [src]="articulo.imagen" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title"> {{ articulo.nombre }} </h5>
-          <p class="card-text">{{ articulo.descripcion }}</p>
-          <a (click)="eliminarReserva(articulo)" class="btn btn-danger">Eliminar de la reserva</a>
+  <div class="cuerpo">
+    <div class="cuerpo-tarjetas" *ngFor="let articulo of articulos">
+      <div *ngIf="comprobarArticuloReservado(articulo)" class="card mb-3" style="max-width: 540px">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img [src]="articulo.imagen" class="img-fluid rounded-start" alt="..." />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ articulo.nombre }}</h5>
+              <p class="card-text">{{ articulo.descripcion }}</p>
+              <a (click)="eliminarReserva(articulo)" class="btn btn-danger">Eliminar de la reserva</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  </div>
-
   <div class="confirmar">
-     <a (click)="hacerReserva()" class="btn btn-primary"> Confirmar la reserva </a>
+    <a (click)="hacerReserva()" class="boton-reserva btn btn-primary">
+      Confirmar la reserva
+    </a>
   </div>
-
-
-
 </div>

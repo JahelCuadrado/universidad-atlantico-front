@@ -46,6 +46,19 @@ export class ClasesComponent {
           console.info(error)
           this.router.navigate(['/login'])
 
-      }})}
+      }})
+    }
+
+
+    anadirArticuloReserva(clase: ClasesResponse){
+      this.reservasService.anadirArticuloReserva(clase)
+    }
+
+
+
+    comprobarReserva(clase: ClasesResponse): boolean{
+      return this.reservasService.comprobarArticuloReservado(clase);
+
+    }
 
 }

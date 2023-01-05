@@ -1,11 +1,13 @@
 <div class="container">
   <div class="box row">
-    <div *ngFor="let equipo of equipos" class="col-3 card">
+    <div *ngFor="let equipo of equipos" [ngClass]="{'disabled': !equipo.disponible}" class="col-3 card disabled">
       <img [src]="equipo.imagen" class="card-img-top">
       <div class="card-body">
         <h5 class="card-title">{{ equipo.nombre }}</h5>
         <p class="card-text">{{ equipo.descripcion }}</p>
-        <a href="#" class="btn btn-primary" style="background: #002F7B;border: none">AÑADIR A RESERVA</a>
+        <a *ngIf="!comprobarReserva(equipo) && equipo.disponible" (click)="anadirArticuloReserva(equipo)" class="btn btn-primary" style="background: #002F7B;border: none">AÑADIR A RESERVA</a>
+        <a *ngIf="comprobarReserva(equipo) && equipo.disponible" class="btn btn-primary">RESERVADO</a>
+        <a *ngIf="!equipo.disponible" class="btn btn-primary">NO DISPONIBLE</a>
       </div>
     </div>
   </div>
