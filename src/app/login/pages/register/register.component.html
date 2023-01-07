@@ -1,1 +1,154 @@
-<p>register works!</p>
+<div class="login">
+  <img src="./assets/image/logo-uni.jpg" style="width: 10rem;">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-floating mb-3">
+      <input
+      formControlName="nombre"
+      type="text"
+      class="form-control"
+      placeholder="nombre"
+      [ngClass]="{'is-invalid': submitted && f['nombre'].errors}">
+      <label>Nombre</label>
+      <div class="invalid-feedback">
+        El nombre es obligatorio
+      </div>
+    </div>
+
+
+    <div class="form-floating mb-3">
+      <input
+      formControlName="apellidos"
+      type="text"
+      class="form-control"
+      placeholder="apellidos"
+      [ngClass]="{'is-invalid': submitted && f['apellidos'].errors}">
+      <label for="floatingPassword">Apellidos</label>
+      <div class="invalid-feedback">
+        Los apellidos son obligatorios
+      </div>
+    </div>
+
+
+    <div class="form-floating mb-3">
+      <input
+      formControlName="dni"
+      type="text"
+      class="form-control"
+      placeholder="dni"
+      [ngClass]="{'is-invalid': submitted && f['dni'].errors}">
+      <label for="floatingPassword">NIF</label>
+      <div class="invalid-feedback">
+        El nif es obligatorio
+      </div>
+    </div>
+
+
+    <div class="form-floating mb-3">
+      <input
+      formControlName="email_institucional"
+      type="text"
+      class="form-control"
+      placeholder="email_institucional"
+      [ngClass]="{'is-invalid': submitted && f['email_institucional'].errors}">
+      <label for="floatingPassword">Email institucional</label>
+      <div class="invalid-feedback">
+        El email institucional es obligatorio
+      </div>
+    </div>
+
+
+    <div class="form-floating mb-3">
+      <input
+      formControlName="email_personal"
+      type="text"
+      class="form-control"
+      placeholder="email_personal"
+      [ngClass]="{'is-invalid': submitted && f['email_personal'].errors}">
+      <label for="floatingPassword">Email personal</label>
+      <div class="invalid-feedback">
+        El email personal es obligatorio
+      </div>
+    </div>
+
+
+    <div class="form-floating mb-3">
+      <input
+      formControlName="telefono"
+      type="text"
+      class="form-control"
+      placeholder="telefono"
+      [ngClass]="{'is-invalid': submitted && f['telefono'].errors}">
+      <label for="floatingPassword">Teléfono</label>
+      <div class="invalid-feedback">
+        El teléfono es obligatorio
+      </div>
+    </div>
+
+
+    <div class="form-floating mb-3">
+      <input
+      formControlName="titulacion"
+      type="text"
+      class="form-control"
+      placeholder="titulacion"
+      [ngClass]="{'is-invalid': submitted && f['titulacion'].errors}">
+      <label for="floatingPassword">Titulación</label>
+      <div class="invalid-feedback">
+        La titulación es obligatoria
+      </div>
+    </div>
+
+
+    <div class="form-floating mb-3">
+      <input
+      formControlName="curso"
+      type="text"
+      class="form-control"
+      placeholder="curso"
+      [ngClass]="{'is-invalid': submitted && f['curso'].errors}">
+      <label for="floatingPassword">Curso</label>
+      <div class="invalid-feedback">
+        El curso es obligatorio
+      </div>
+    </div>
+
+
+    <div class="form-floating mb-3">
+      <input
+      formControlName="contrasena"
+      type="password"
+      class="form-control"
+      placeholder="contrasena"
+      [ngClass]="{'is-invalid': submitted && f['contrasena'].errors}">
+      <label for="floatingPassword">Contraseña</label>
+      <div class="invalid-feedback">
+        La contraseña es obligatoria
+      </div>
+    </div>
+
+
+    <div class="form-floating mb-3">
+      <input
+      formControlName="repetir_contrasena"
+      type="password"
+      class="form-control"
+      placeholder="repetir_contrasena"
+      [ngClass]="{'is-invalid': submitted && f['repetir_contrasena'].errors}">
+      <label for="floatingPassword">Repetir contraseña</label>
+      <div class="invalid-feedback">
+        La contraseña repetida es obligatoria
+      </div>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary mb-3">Iniciar Sesión</button>
+
+    <div *ngIf="!credencialesSonIncorrectas" class="alert alert-danger" role="alert">
+      Las credenciales son incorrectas
+    </div>
+
+  </form>
+</div>

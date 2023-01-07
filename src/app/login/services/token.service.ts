@@ -3,6 +3,7 @@ import { LoginDjango } from '../interfaces/login.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TokenDjango } from '../interfaces/token.interface';
+import { Register } from '../interfaces/register.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,12 @@ export class TokenService {
   loginUsuario(dataLogin: LoginDjango): Observable<TokenDjango> {
     const url = 'http://127.0.0.1:8000/users/login/';
     const data = dataLogin;
+    return this.http.post<TokenDjango>(url, data);
+  }
+
+  registerUsuario(dataRegister: Register): Observable<TokenDjango> {
+    const url = 'http://127.0.0.1:8000/users/register/';
+    const data = dataRegister;
     return this.http.post<TokenDjango>(url, data);
   }
 
