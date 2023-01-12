@@ -4,6 +4,15 @@
 </div>
 <div class="offcanvas-body">
   <div class="cuerpo">
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Motivo del préstamo*</label>
+      <textarea
+      class="form-control"
+      name="dato"
+      [(ngModel)]="dato"
+      (ngModelChange)="motivoPrestamo()"
+      rows="3"></textarea>
+    </div>
     <div class="cuerpo-tarjetas" *ngFor="let articulo of articulos">
       <div *ngIf="comprobarArticuloReservado(articulo)" class="card mb-3" style="max-width: 540px">
         <div class="row g-0">

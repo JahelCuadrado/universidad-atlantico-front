@@ -1,4 +1,4 @@
-<div class="login">
+<div *ngIf="!registerCorrecto" class="register">
   <img src="./assets/image/logo-uni.jpg" style="width: 10rem;">
 
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -87,32 +87,31 @@
     </div>
 
 
-    <div class="form-floating mb-3">
-      <input
-      formControlName="titulacion"
-      type="text"
-      class="form-control"
-      placeholder="titulacion"
-      [ngClass]="{'is-invalid': submitted && f['titulacion'].errors}">
-      <label for="floatingPassword">Titulación</label>
-      <div class="invalid-feedback">
-        La titulación es obligatoria
-      </div>
-    </div>
+    <select
+        (change)="cursoEnAnos($event)"
+        class="form-select titulacion-select"
+        aria-label="Default select example"
+        formControlName="titulacion">
+
+        <option value="defecto" selected> Titulación</option>
+        <option
+            *ngFor="let titulacion of titulaciones"
+            [value]="titulacion | json"> {{ titulacion.titulo }}
+        </option>
+    </select>
 
 
-    <div class="form-floating mb-3">
-      <input
-      formControlName="curso"
-      type="text"
-      class="form-control"
-      placeholder="curso"
-      [ngClass]="{'is-invalid': submitted && f['curso'].errors}">
-      <label for="floatingPassword">Curso</label>
-      <div class="invalid-feedback">
-        El curso es obligatorio
-      </div>
-    </div>
+    <select
+        class="form-select titulacion-select"
+        aria-label="Default select example"
+        formControlName="curso">
+
+        <option value="defecto" selected> Curso</option>
+        <option
+            *ngFor="let curso of cursoTitulacion"
+            [value]="curso"> {{ curso}}º año
+        </option>
+    </select>
 
 
     <div class="form-floating mb-3">
@@ -142,13 +141,19 @@
       </div>
     </div>
 
+    <button type="submit" class="btn btn-primary mb-3">Registrase</button>
 
-
-    <button type="submit" class="btn btn-primary mb-3">Iniciar Sesión</button>
-
-    <div *ngIf="!credencialesSonIncorrectas" class="alert alert-danger" role="alert">
-      Las credenciales son incorrectas
+    <div *ngIf="errorDeRegistro" class="alert alert-danger" role="alert">
+      Este usuario ya está registrado.
     </div>
 
+
   </form>
+</div>
+
+<div *ngIf="registerCorrecto" class="register-confirmado">
+  <img class="completing" src="../../../../assets/image/completing.svg">
+  <a
+  routerLink="login"
+  class="btn btn-primary boton-login"> Iniciar Sesión</a>
 </div>

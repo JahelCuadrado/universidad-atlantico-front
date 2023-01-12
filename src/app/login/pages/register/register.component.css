@@ -4,7 +4,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.login{
+.register{
   width: 40rem;
   margin: auto;
   text-align: center;
@@ -12,6 +12,24 @@
   padding: 5rem;
   margin-top: 2rem;
   border-radius: 10px;
+}
+
+.register-confirmado{
+  width: 40rem;
+  margin: auto;
+  text-align: center;
+  padding: 5rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+}
+
+.completing{
+  width: 15rem;
+}
+
+.titulacion-select{
+  height: 3.5rem;
+  margin-bottom: 1rem;
 }
 
 p{
@@ -30,7 +48,7 @@ p{
 }
 
 @media screen and (max-width: 700px) {
-  .login{
+  .register{
     width: 100%;
     padding: 4rem;
   }

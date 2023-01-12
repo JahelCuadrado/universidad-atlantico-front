@@ -5,6 +5,7 @@ import { EquiposComponent } from './pages/equipos/equipos.component';
 import { ClasesComponent } from './pages/clases/clases.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { ConfirmacionComponent } from './components/confirmacion/confirmacion.co
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   exports:[
     ConfirmacionComponent

@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TokenDjango } from '../interfaces/token.interface';
 import { Register } from '../interfaces/register.interface';
+import { Titulacion } from '../interfaces/titulacion.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,8 @@ export class TokenService {
     return this.http.post<TokenDjango>(url, data);
   }
 
+
+
   registerUsuario(dataRegister: Register): Observable<TokenDjango> {
     const url = 'http://127.0.0.1:8000/users/register/';
     const data = dataRegister;
@@ -30,6 +33,39 @@ export class TokenService {
 
   guardarToken(token: TokenDjango){
     localStorage.setItem('tokenDjango', JSON.stringify(token))
+  }
+
+
+
+  obtenerTitulaciones(): Observable<Titulacion[]>{
+      const url = 'http://localhost:8000/users/titulaciones/';
+      return this.http.get<Titulacion[]>(url);
+  }
+
+
+
+  obtenerDatosUsuario(){
+    let token = JSON.parse(localStorage.getItem('tokenDjango')!) || "";
+    const url = "http://localhost:8000/users/me/"
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${token.access}`
+      })
+    };
+
+    this.http.get(url, httpOptions).subscribe({
+
+      next: (resp) =>{
+          localStorage.setItem("datosUsuario", JSON.stringify(resp))
+      },
+
+      error: (err) => {
+          console.log(err);
+
+      }
+
+    })
   }
 
 

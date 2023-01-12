@@ -3,6 +3,8 @@ import { MaterialesResponse } from '../../interfaces/materiales.interface';
 import { ClasesResponse } from '../../interfaces/clases.interface';
 import { EquiposResponse } from '../../interfaces/equipos.interface';
 import { ReservasService } from '../../services/reservas.service';
+import { Event } from '@angular/router';
+import { Subject, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-confirmacion',
@@ -13,7 +15,8 @@ export class ConfirmacionComponent {
 
 
   articulos: (MaterialesResponse|ClasesResponse|EquiposResponse)[] = [];
-
+  debouncerMotivoPrestamo : Subject<string> = new Subject();
+  dato! : string;
 
   constructor(
     private reservasService: ReservasService
@@ -21,7 +24,14 @@ export class ConfirmacionComponent {
 
 
   ngOnInit(): void {
-        this.articulos = this.reservasService.devolverArticulos()
+
+    this.debouncerMotivoPrestamo
+    .pipe(debounceTime(300))
+    .subscribe( valor => {
+      this.reservasService.guardarMotivoPrestamo(valor)
+    })
+
+    this.articulos = this.reservasService.devolverArticulos()
 
     window.addEventListener('storage', event => {
       if (event.key === 'articulos') {
@@ -45,7 +55,11 @@ export class ConfirmacionComponent {
 
 
   hacerReserva(){
-      
+
+  }
+
+  motivoPrestamo(){
+    this.debouncerMotivoPrestamo.next(this.dato)
   }
 
 

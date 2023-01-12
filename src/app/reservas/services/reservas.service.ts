@@ -6,6 +6,8 @@ import { MaterialesComponent } from '../pages/materiales/materiales.component';
 import { Observable } from "rxjs";
 import { TokenDjango } from '../../login/interfaces/token.interface';
 import { ClasesResponse } from '../interfaces/clases.interface';
+import { Usuario } from '../../login/interfaces/usuario.interface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -154,6 +156,31 @@ eliminarArticuloReserva(articulo: MaterialesResponse| ClasesResponse| EquiposRes
 
 hacerReserva(){
   this.articulos = JSON.parse(localStorage.getItem('articulos')!) || [];
+  const usuario : Usuario = JSON.parse(localStorage.getItem('datosUsuario')!) || "";
+  const materiales : MaterialesResponse[] = [];
+  const equipos    : EquiposResponse[] = [];
+  const clases     : ClasesResponse[] = [];
+
+  return this.articulos.some(elemento => {
+    if (elemento.hasOwnProperty('inventario')){
+      materiales.push(elemento as MaterialesResponse)
+    }
+    if (elemento.hasOwnProperty('numero_clase')) {
+      equipos.push(elemento as EquiposResponse)
+    }
+    if (elemento.hasOwnProperty('id')){
+      clases.push(elemento as ClasesResponse)
+    }
+  });
+
+  const reserva = {
+     "id": usuario.id,
+     //""
+   };
+}
+
+guardarMotivoPrestamo(motivo: string){
+  localStorage.setItem("motivoPrestamo", motivo)
 }
 
 

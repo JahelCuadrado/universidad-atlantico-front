@@ -3,9 +3,13 @@
     <a class="navbar-brand" href="#">
       <img src=".\\src\assets\image\logo-atlantico-medio.png" style="max-width: 220px;">
     </a>
-    <div *ngIf="!usuarioLogueado" class="register">
+    <div *ngIf="botonRegisterHabilitado" class="register">
       <button routerLink="register" type="button" class="btn btn-primary">Registrarse</button>
     </div>
+    <div *ngIf="botonLoginHabilitado" class="register">
+      <button routerLink="login" type="button" class="btn btn-primary">Iniciar sesión</button>
+    </div>
+
     <button *ngIf="usuarioLogueado" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

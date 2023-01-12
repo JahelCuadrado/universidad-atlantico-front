@@ -50,6 +50,7 @@ export class LoginComponent {
               next: (res) => {
                 console.log(res);
                 this.tokenService.guardarToken(res)
+                this.tokenService.obtenerDatosUsuario()
                 this.router.navigate(['/materiales'])
               },
               error: (err) => {

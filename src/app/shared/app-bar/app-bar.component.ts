@@ -11,6 +11,8 @@ import { ReservasService } from '../../reservas/services/reservas.service';
 export class AppBarComponent {
 
   usuarioLogueado : boolean = false;
+  botonLoginHabilitado : boolean = false;
+  botonRegisterHabilitado : boolean = false;
   cantidadArticulos : number = 0;
 
   constructor(
@@ -27,11 +29,25 @@ export class AppBarComponent {
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+
         if(this.tokenService.comprobarToken()){
           this.usuarioLogueado = true
         }else{
           this.usuarioLogueado = false
         }
+
+        console.log(this.router.routerState.snapshot.url);
+        if(this.router.routerState.snapshot.url == "/register"){
+          this.botonRegisterHabilitado = false
+          this.botonLoginHabilitado = true
+        }
+        if(this.router.routerState.snapshot.url == "/login"){
+          this.botonRegisterHabilitado = true
+          this.botonLoginHabilitado = false
+        }else{
+          this.botonRegisterHabilitado = false
+        }
+
       }
     });
 
@@ -42,7 +58,6 @@ export class AppBarComponent {
     });
 
   }
-
 
   cerrarSesion(){
     this.tokenService.borrarToken()
