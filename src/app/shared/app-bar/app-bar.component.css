@@ -135,5 +135,13 @@ span{
     width: 15rem;
   }
 
+
+
+}
+
+.disabled{
+  filter: grayscale();
+  color: rgba(128, 128, 128, 0.377);
+  pointer-events: none;
 }
 

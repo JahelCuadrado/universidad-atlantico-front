@@ -18,3 +18,16 @@
   margin-bottom: 60px;
 }
 
+img{
+  margin: auto;
+  width: 100%;
+}
+
+.toast
+{
+  position:absolute;
+  bottom: 1rem;
+  right: 1rem;
+  height: 60px;
+  width: 100%;
+}

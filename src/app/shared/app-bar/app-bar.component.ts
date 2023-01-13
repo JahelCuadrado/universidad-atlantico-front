@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TokenService } from '../../login/services/token.service';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, Event } from '@angular/router';
 import { ReservasService } from '../../reservas/services/reservas.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class AppBarComponent {
   botonLoginHabilitado : boolean = false;
   botonRegisterHabilitado : boolean = false;
   cantidadArticulos : number = 0;
+  misReservas : boolean = true;
 
   constructor(
     private tokenService: TokenService,
@@ -63,5 +64,10 @@ export class AppBarComponent {
     this.tokenService.borrarToken()
     this.router.navigate(['/login']);
   }
+
+  habilitarReservas(event: any){
+    this.misReservas = event.value
+  }
+
 
 }

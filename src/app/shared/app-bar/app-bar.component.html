@@ -33,12 +33,17 @@
             routerLinkActive="active">CLASES</a>
 
         <a
-            class="nav-link disabled notification">
+            [ngClass]="{'disabled': misReservas}"
+            class="nav-link"
+            routerLink=""
+            >
             MIS RESERVAS
 
         </a>
 
-        <button type="button" class="logout btn btn-default pantalla-pequena confirma" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+        <button
+        [ngClass]="{'disabled':cantidadArticulos==0}"
+        type="button" class="logout btn btn-default pantalla-pequena confirma" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
             <span class="izquierda">
               CONFIRMAR RESERVA
             </span>
@@ -48,11 +53,14 @@
             </span>
         </button>
 
-        <div class="notification pantalla-grande">
+        <div
+        class="notification pantalla-grande"
+        [ngClass]="{'disabled':cantidadArticulos==0}"
+        >
               <span class="material-symbols-outlined reserva" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
               article
               </span>
-              <span class="badge"> {{ cantidadArticulos }} </span>
+              <span *ngIf="cantidadArticulos" class="badge"> {{ cantidadArticulos }} </span>
         </div>
 
 
@@ -76,5 +84,7 @@
 
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <app-confirmacion></app-confirmacion>
+    <app-confirmacion
+      (misReservas)="habilitarReservas($event)"
+    ></app-confirmacion>
 </div>

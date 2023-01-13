@@ -6,6 +6,8 @@ import { ClasesComponent } from './pages/clases/clases.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 
 
 
@@ -19,7 +21,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports:[
     ConfirmacionComponent

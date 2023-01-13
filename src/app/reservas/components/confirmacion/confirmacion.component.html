@@ -1,29 +1,67 @@
 <div class="offcanvas-header">
   <h5 class="offcanvas-title" id="offcanvasRightLabel">Confirmar reserva</h5>
-  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close"
+  ></button>
 </div>
 <div class="offcanvas-body">
   <div class="cuerpo">
     <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">Motivo del préstamo*</label>
-      <textarea
-      class="form-control"
-      name="dato"
-      [(ngModel)]="dato"
-      (ngModelChange)="motivoPrestamo()"
-      rows="3"></textarea>
+      <div *ngIf="articulos[0] && !reservaRealizada">
+        <label for="exampleFormControlTextarea1" class="form-label"
+          >*Motivo del préstamo (35 caracteres minimo) {{numeroCaracteres}} </label
+        >
+
+        <textarea
+          class="form-control"
+          name="dato"
+          [(ngModel)]="dato"
+          (ngModelChange)="motivoPrestamo()"
+          rows="3"
+        ></textarea>
+      </div>
+
+      <p *ngIf="!articulos[0] && !reservaRealizada">No hay articulos en la reserva :(</p>
+
+
     </div>
+
+
+    <div
+    *ngIf="!articulos[0] && reservaRealizada"
+    class="card text-bg-success mb-3"
+    style="max-width: 18rem;">
+      <div class="card-header ">Felicidades</div>
+      <div class="card-body">
+        <h5 class="card-title">La reserva se ha realizado con éxito.</h5>
+        <a class="btn btn-light"> Ver mis reservas</a>
+      </div>
+    </div>
+
     <div class="cuerpo-tarjetas" *ngFor="let articulo of articulos">
-      <div *ngIf="comprobarArticuloReservado(articulo)" class="card mb-3" style="max-width: 540px">
+      <div
+        *ngIf="comprobarArticuloReservado(articulo)"
+        class="card mb-3"
+        style="max-width: 540px"
+      >
         <div class="row g-0">
           <div class="col-md-4">
-            <img [src]="articulo.imagen" class="img-fluid rounded-start" alt="..." />
+            <img
+              [src]="articulo.imagen"
+              class="img-fluid rounded-start"
+              alt="..."
+            />
           </div>
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">{{ articulo.nombre }}</h5>
               <p class="card-text">{{ articulo.descripcion }}</p>
-              <a (click)="eliminarReserva(articulo)" class="btn btn-danger">Eliminar de la reserva</a>
+              <a (click)="eliminarReserva(articulo)" class="btn btn-danger"
+                >Eliminar de la reserva</a
+              >
             </div>
           </div>
         </div>
@@ -32,7 +70,11 @@
   </div>
 
   <div class="confirmar">
-    <a (click)="hacerReserva()" class="boton-reserva btn btn-primary">
+    <a
+      (click)="hacerReserva()"
+      class="boton-reserva btn btn-primary"
+      [class]="botonDesabilitado"
+    >
       Confirmar la reserva
     </a>
   </div>

@@ -7,6 +7,7 @@ import { Observable } from "rxjs";
 import { TokenDjango } from '../../login/interfaces/token.interface';
 import { ClasesResponse } from '../interfaces/clases.interface';
 import { Usuario } from '../../login/interfaces/usuario.interface';
+import { Reserva } from '../interfaces/reserva.interface';
 
 
 @Injectable({
@@ -50,13 +51,11 @@ obtenerEquipos(): Observable<EquiposResponse[]>{
 
 
 obtenerClases(): Observable<ClasesResponse[]>{
-
   const httpOptions = {
     headers: new HttpHeaders({
       'Authorization': `Bearer ${this.obtenerToken().access}`
     })
   };
-
   const urlMateriales : string = "http://127.0.0.1:8000/reservas/clases/";
   return this.http.get<ClasesResponse[]>(urlMateriales, httpOptions);
 }
@@ -153,30 +152,75 @@ eliminarArticuloReserva(articulo: MaterialesResponse| ClasesResponse| EquiposRes
 }
 
 
+eliminarArticulosReserva(){
+  localStorage.removeItem('articulos')
+}
 
-hacerReserva(){
-  this.articulos = JSON.parse(localStorage.getItem('articulos')!) || [];
-  const usuario : Usuario = JSON.parse(localStorage.getItem('datosUsuario')!) || "";
-  const materiales : MaterialesResponse[] = [];
-  const equipos    : EquiposResponse[] = [];
-  const clases     : ClasesResponse[] = [];
 
-  return this.articulos.some(elemento => {
+
+hacerReserva(): Observable<Reserva>{
+  const url = "http://127.0.0.1:8000/reservas/creates/"
+
+  this.articulos               = JSON.parse(localStorage.getItem('articulos')!) || [];
+  const usuario : Usuario      = JSON.parse(localStorage.getItem('datosUsuario')!) || "";
+  const motivoReserva : string = localStorage.getItem('motivoPrestamo')! || "";
+
+  const date = new Date();
+  const today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+
+  const materiales : string[] = [];
+  const equipos    : number[] = [];
+  const clases     : string[] = [];
+
+  this.articulos.some(elemento => {
     if (elemento.hasOwnProperty('inventario')){
-      materiales.push(elemento as MaterialesResponse)
+      materiales.push((elemento as MaterialesResponse).inventario)
     }
     if (elemento.hasOwnProperty('numero_clase')) {
-      equipos.push(elemento as EquiposResponse)
+      equipos.push((elemento as EquiposResponse).id)
     }
     if (elemento.hasOwnProperty('id')){
-      clases.push(elemento as ClasesResponse)
+      clases.push((elemento as ClasesResponse).numero_clase)
     }
   });
 
-  const reserva = {
-     "id": usuario.id,
-     //""
+  let reserva = {
+     "usuario": usuario.id,
+     "motivo_prestamo": motivoReserva,
+     "fecha_devolucion": today,
+     "devuelto": false,
+     "equipo": equipos,
+     "clase":clases,
+     "material":materiales
    };
+
+   console.log(reserva);
+
+
+   const httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${this.obtenerToken().access}`
+    })
+  };
+
+  this.eliminarArticulosReserva()
+
+  this.articulos = JSON.parse(localStorage.getItem('articulos')!) || [];
+  console.log(this.articulos);
+
+
+  const oldValue = JSON.stringify(this.articulos.slice(0, -1));
+  const newValue = JSON.stringify(this.articulos);
+  const storageEvent = new StorageEvent('storage', {
+    key: 'articulos',
+    newValue,
+    oldValue,
+    url: window.location.href
+  });
+  window.dispatchEvent(storageEvent);
+
+  return this.http.post<Reserva>(url, reserva, httpOptions)
+
 }
 
 guardarMotivoPrestamo(motivo: string){
