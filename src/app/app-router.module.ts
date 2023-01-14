@@ -6,6 +6,7 @@ import { ClasesComponent } from './reservas/pages/clases/clases.component';
 import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from './login/pages/login/login.component';
 import { RegisterComponent } from './login/pages/register/register.component';
+import { MisReservasComponent } from './reservas/pages/mis-reservas/mis-reservas.component';
 
 const routes : Routes = [
   {
@@ -27,6 +28,10 @@ const routes : Routes = [
   {
     path:'register',
     component: RegisterComponent
+  },
+  {
+    path:'mis-reservas',
+    component: MisReservasComponent
   },
   {
     path:'**',

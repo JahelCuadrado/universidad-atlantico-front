@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MisReservasComponent } from './pages/mis-reservas/mis-reservas.component';
 
 
 
@@ -16,7 +17,8 @@ import { RouterModule } from '@angular/router';
     MaterialesComponent,
     EquiposComponent,
     ClasesComponent,
-    ConfirmacionComponent
+    ConfirmacionComponent,
+    MisReservasComponent
   ],
   imports: [
     CommonModule,
